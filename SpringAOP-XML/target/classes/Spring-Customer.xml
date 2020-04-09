@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+-
+<beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+
+
+	-
+	<bean class="com.practice.customerservice.CustomerService" id="customerService">
+
+		<property value="Avinash Edamadakala" name="name" />
+
+		<property value="http://www.google.com" name="url" />
+
+	</bean>
+
+	<bean class="com.practice.aop.HijackAroundMethod" id="hijackAroundMethodBean" />
+
+
+	-
+	<bean class="org.springframework.aop.framework.ProxyFactoryBean"
+		id="customerServiceProxy">
+
+		<property name="target" ref="customerService" />
+
+
+		-
+		<property name="interceptorNames">
+
+
+			-
+			<list>
+
+				<value>hijackAroundMethodBean</value>
+
+			</list>
+
+		</property>
+
+	</bean>
+
+</beans>
